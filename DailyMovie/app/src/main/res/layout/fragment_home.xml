@@ -1,0 +1,19 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".screen.main.fragments.homefragment.HomeFragment"
+    >
+    <data>
+        <variable
+            name="viewModel"
+            type="com.workspace.dailymovie.screen.main.fragments.homefragment.HomeViewModel"
+            />
+    </data>
+    <LinearLayout
+        android:background="@drawable/bg_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    </LinearLayout>
+
+</layout>
