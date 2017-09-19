@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_item_home"
+            android:icon="@drawable/icon_home"
+            android:title="@string/title_menu_home"/>
+
+        <item
+            android:id="@+id/menu_item_now_playing"
+            android:icon="@drawable/icon_now_playing"
+            android:title="@string/title_menu_now_playing"/>
+        <item
+            android:id="@+id/menu_item_up_coming"
+            android:icon="@drawable/icon_upcoming"
+            android:title="@string/title_menu_upcoming"/>
+        <item
+            android:id="@+id/menu_item_top_rate"
+            android:icon="@drawable/icon_top_rate"
+            android:title="@string/title_menu_top_rate"/>
+        <item
+            android:id="@+id/menu_item_genres"
+            android:icon="@drawable/icon_genres"
+            android:title="@string/title_menu_genres"/>
+        <item
+            android:id="@+id/menu_item_favorite"
+            android:icon="@drawable/icon_favorite"
+            android:title="@string/title_menu_favorite"/>
+
+    </group>
+
+</menu>
