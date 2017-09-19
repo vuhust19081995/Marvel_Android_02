@@ -4,11 +4,9 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import com.framgia.moviedb.BR;
+import com.framgia.moviedb.R;
 
 import static com.framgia.moviedb.utils.Constant.DRAWER_CLOSE;
 import static com.framgia.moviedb.utils.Constant.DRAWER_OPEN;
@@ -19,12 +17,7 @@ import static com.framgia.moviedb.utils.Constant.DRAWER_OPEN;
 
 public class MainViewModel extends BaseObservable
         implements MainContract.ViewModel, NavigationView.OnNavigationItemSelectedListener {
-    private DrawerLayout mDrawerLayout;
-    private Toolbar mToolbar;
-    private NavigationView mNavigationView;
-    private ActionBarDrawerToggle mToggle;
     private MainContract.Presenter mPresenter;
-
     private String mDrawerState;
 
     public MainViewModel() {
@@ -63,6 +56,16 @@ public class MainViewModel extends BaseObservable
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.menu_item_home:
+                // todo later
+                break;
+            default:
+                // todo later
+                break;
+        }
+        setDrawerState(DRAWER_CLOSE);
+        return true;
     }
 }
