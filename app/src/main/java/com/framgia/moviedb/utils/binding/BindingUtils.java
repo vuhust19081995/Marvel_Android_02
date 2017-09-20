@@ -4,11 +4,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.widget.FrameLayout;
 import com.framgia.moviedb.R;
+import com.framgia.moviedb.screen.home.slidebanner.BannerViewpagerAdapter;
 import com.framgia.moviedb.utils.Constant;
 
 /**
@@ -48,4 +54,21 @@ public final class BindingUtils {
             NavigationView.OnNavigationItemSelectedListener listener) {
         navigationView.setNavigationItemSelectedListener(listener);
     }
+
+    @BindingAdapter({ "bind:fragmentManager", "bind:fragment" })
+    public static void replaceFragment(FrameLayout frameLayout, FragmentManager fragmentManager,
+            Fragment fragment) {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        int id = frameLayout.getId();
+        transaction.replace(id, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    @BindingAdapter({ "bind:viewPagerAdapter" })
+    public static void setViewPagerAdapter(ViewPager viewPager,
+            BannerViewpagerAdapter viewPagerAdapter) {
+        viewPager.setAdapter(viewPagerAdapter);
+    }
+
 }

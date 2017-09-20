@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mViewModel = new MainViewModel();
+        mViewModel = new MainViewModel(getSupportFragmentManager());
         MainContract.Presenter presenter = new MainPresenter(mViewModel);
         mViewModel.setPresenter(presenter);
         binding.setViewModel((MainViewModel) mViewModel);

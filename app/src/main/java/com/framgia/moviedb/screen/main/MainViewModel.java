@@ -4,9 +4,12 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.MenuItem;
 import com.framgia.moviedb.BR;
 import com.framgia.moviedb.R;
+import com.framgia.moviedb.screen.home.HomeFragment;
 
 import static com.framgia.moviedb.utils.Constant.DRAWER_CLOSE;
 import static com.framgia.moviedb.utils.Constant.DRAWER_OPEN;
@@ -19,9 +22,13 @@ public class MainViewModel extends BaseObservable
         implements MainContract.ViewModel, NavigationView.OnNavigationItemSelectedListener {
     private MainContract.Presenter mPresenter;
     private String mDrawerState;
+    private FragmentManager mFragmentManager;
+    private Fragment mFragment;
 
-    public MainViewModel() {
+    public MainViewModel(FragmentManager fragmentManager) {
         setDrawerState(DRAWER_CLOSE);
+        mFragmentManager = fragmentManager;
+        setFragment(HomeFragment.newInstance());
     }
 
     @Override
@@ -59,7 +66,7 @@ public class MainViewModel extends BaseObservable
         int id = item.getItemId();
         switch (id) {
             case R.id.menu_item_home:
-                // todo later
+                setFragment(HomeFragment.newInstance());
                 break;
             default:
                 // todo later
@@ -67,5 +74,19 @@ public class MainViewModel extends BaseObservable
         }
         setDrawerState(DRAWER_CLOSE);
         return true;
+    }
+
+    public FragmentManager getFragmentManager() {
+        return mFragmentManager;
+    }
+
+    @Bindable
+    public Fragment getFragment() {
+        return mFragment;
+    }
+
+    public void setFragment(Fragment fragment) {
+        mFragment = fragment;
+        notifyPropertyChanged(BR.fragment);
     }
 }

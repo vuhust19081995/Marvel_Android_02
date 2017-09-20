@@ -60,6 +60,8 @@
             android:id="@+id/frame_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            bind:fragment="@{viewModel.fragment}"
+            bind:fragmentManager="@{viewModel.fragmentManager}"
             />
 
         <android.support.v4.widget.DrawerLayout
