@@ -7,6 +7,7 @@ package com.framgia.moviedb.utils;
 public final class Constant {
     public static final String DRAWER_OPEN = "OPEN";
     public static final String DRAWER_CLOSE = "CLOSE";
+
     private Constant() {
 
     }

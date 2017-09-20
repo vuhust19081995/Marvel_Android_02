@@ -3,6 +3,7 @@ package com.framgia.moviedb.utils.binding;
 import android.app.Activity;
 import android.content.Context;
 import android.databinding.BindingAdapter;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -40,5 +41,11 @@ public final class BindingUtils {
                         R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
+    }
+
+    @BindingAdapter({ "bind:navigationviewListener" })
+    public static void setNavigationViewListener(NavigationView navigationView,
+            NavigationView.OnNavigationItemSelectedListener listener) {
+        navigationView.setNavigationItemSelectedListener(listener);
     }
 }
