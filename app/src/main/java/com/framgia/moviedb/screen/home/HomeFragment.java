@@ -24,8 +24,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = new HomeFragmentViewModel(getActivity().getSupportFragmentManager());
-
+        mViewModel = new HomeFragmentViewModel(getChildFragmentManager());
         HomeFragmentContract.Presenter presenter = new HomeFragmentPresenter(mViewModel);
         mViewModel.setPresenter(presenter);
     }

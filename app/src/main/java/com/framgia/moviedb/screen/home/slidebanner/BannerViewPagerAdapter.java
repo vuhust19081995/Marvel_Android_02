@@ -2,16 +2,16 @@ package com.framgia.moviedb.screen.home.slidebanner;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 
 import static com.framgia.moviedb.utils.Constant.BANNER_COUNT;
 
 /**
- * Created by workspace on 20/09/2017.
+ * Created by workspace on 21/09/2017.
  */
 
-public class BannerViewpagerAdapter extends FragmentStatePagerAdapter {
-    public BannerViewpagerAdapter(FragmentManager fm) {
+public class BannerViewPagerAdapter extends FragmentPagerAdapter {
+    public BannerViewPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

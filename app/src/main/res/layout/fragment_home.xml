@@ -20,7 +20,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/bg_menu"
         android:orientation="vertical"
-        tools:context=".screen.main.fragment.homefragment.HomeFragmentActivity"
+        tools:context="com.framgia.moviedb.screen.home.slidebanner.HomeFragment"
         >
 
         <android.support.v4.view.ViewPager
@@ -28,6 +28,16 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/view_pager_height"
             bind:viewPagerAdapter="@{viewModel.viewPagerAdapter}"
+            />
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabBackground="@drawable/selector_tab_layout"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp"
+            bind:setUpTabLayout="@{viewPager}"
             />
 
         <android.support.v7.widget.RecyclerView

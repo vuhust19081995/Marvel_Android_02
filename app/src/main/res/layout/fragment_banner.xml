@@ -14,19 +14,13 @@
 
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.framgia.moviedb.screen.home.slidebanner.screen.BannerFragment.BannerFragmentActivity"
+        android:background="@color/color_black"
+        tools:context="com.framgia.moviedb.screen.home.slidebanner.BannerFragment"
         >
 
-        <ImageView
-            android:id="@+id/image_movie"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            tools:ignore="ContentDescription"
-            />
-
-    </LinearLayout>
+    </FrameLayout>
 </layout>
+

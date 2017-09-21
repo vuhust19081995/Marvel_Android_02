@@ -56,14 +56,6 @@
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
-        <FrameLayout
-            android:id="@+id/frame_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            bind:fragment="@{viewModel.fragment}"
-            bind:fragmentManager="@{viewModel.fragmentManager}"
-            />
-
         <android.support.v4.widget.DrawerLayout
             android:id="@+id/drawer_layout"
             android:layout_width="match_parent"
@@ -72,6 +64,15 @@
             bind:toggleDrawer="@{toolBar}"
             tools:openDrawer="start"
             >
+
+            <FrameLayout
+                android:id="@+id/frame_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_menu"
+                bind:fragment="@{viewModel.fragment}"
+                bind:fragmentManager="@{viewModel.fragmentManager}"
+                />
 
             <android.support.design.widget.NavigationView
                 android:id="@+id/navigation_view"
