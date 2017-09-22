@@ -1,9 +1,13 @@
 package com.framgia.moviedb.screen.home;
 
+import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.support.v4.app.FragmentManager;
+import android.widget.Toast;
 import com.framgia.moviedb.BR;
+import com.framgia.moviedb.data.model.MovieResponse;
+import com.framgia.moviedb.data.source.MovieRepository;
 import com.framgia.moviedb.screen.home.slidebanner.BannerViewPagerAdapter;
 
 /**
@@ -17,8 +21,15 @@ public class HomeFragmentViewModel extends BaseObservable
 
     private BannerViewPagerAdapter mViewPagerAdapter;
 
-    public HomeFragmentViewModel(FragmentManager fragmentManager) {
+    private MovieRepository mMovieRepository;
+
+    private Context mContext;
+
+    public HomeFragmentViewModel(Context context, FragmentManager fragmentManager,
+            MovieRepository movieRepository) {
         setViewPagerAdapter(new BannerViewPagerAdapter(fragmentManager));
+        mMovieRepository = movieRepository;
+        mContext = context;
     }
 
     @Override
@@ -44,5 +55,15 @@ public class HomeFragmentViewModel extends BaseObservable
     public void setViewPagerAdapter(BannerViewPagerAdapter viewPagerAdapter) {
         mViewPagerAdapter = viewPagerAdapter;
         notifyPropertyChanged(BR.viewPagerAdapter);
+    }
+
+    @Override
+    public void onGetMovieSuccess(MovieResponse movieResponse) {
+        // todo later
+    }
+
+    @Override
+    public void onGetMovieError(String msg) {
+        Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
     }
 }

@@ -13,6 +13,9 @@ bin/
 gen/
 out/
 
+#API key file
+gradle.properties
+
 # Gradle files
 .gradle/
 build/

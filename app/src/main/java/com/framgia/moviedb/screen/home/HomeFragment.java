@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.framgia.moviedb.R;
+import com.framgia.moviedb.data.source.MovieRepository;
+import com.framgia.moviedb.data.source.remote.MovieRemoteDataSoure;
+import com.framgia.moviedb.data.source.remote.api.service.MovieServiceClient;
 import com.framgia.moviedb.databinding.FragmentHomeBinding;
 import com.framgia.moviedb.screen.BaseFragment;
 
@@ -17,6 +20,10 @@ public class HomeFragment extends BaseFragment {
 
     private HomeFragmentContract.ViewModel mViewModel;
 
+    private HomeFragmentContract.Presenter mPresenter;
+
+    private MovieRepository mMovieRepository;
+
     public static HomeFragment newInstance() {
         return new HomeFragment();
     }
@@ -24,9 +31,12 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = new HomeFragmentViewModel(getChildFragmentManager());
-        HomeFragmentContract.Presenter presenter = new HomeFragmentPresenter(mViewModel);
-        mViewModel.setPresenter(presenter);
+        mMovieRepository =
+                new MovieRepository(new MovieRemoteDataSoure(MovieServiceClient.getInstance()));
+        mViewModel = new HomeFragmentViewModel(getActivity(), getChildFragmentManager(),
+                mMovieRepository);
+        mPresenter = new HomeFragmentPresenter(mViewModel, mMovieRepository);
+        mViewModel.setPresenter(mPresenter);
     }
 
     @Nullable
@@ -50,5 +60,11 @@ public class HomeFragment extends BaseFragment {
     public void onStop() {
         mViewModel.onStop();
         super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        ((HomeFragmentPresenter) mPresenter).onDestroy();
+        super.onDestroy();
     }
 }
