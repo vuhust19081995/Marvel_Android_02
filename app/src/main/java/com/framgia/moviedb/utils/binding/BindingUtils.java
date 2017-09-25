@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -15,8 +15,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import com.bumptech.glide.Glide;
 import com.framgia.moviedb.R;
 import com.framgia.moviedb.utils.Constant;
+
+import static com.framgia.moviedb.utils.Constant.BACK_DROP_SIZE;
+import static com.framgia.moviedb.utils.Constant.BASE_URL_IMAGE;
 
 /**
  * Created by workspace on 18/09/2017.
@@ -74,5 +79,11 @@ public final class BindingUtils {
     @BindingAdapter({ "bind:setUpTabLayout" })
     public static void setUpTabLayout(TabLayout tabLayout, ViewPager viewPager) {
         tabLayout.setupWithViewPager(viewPager);
+    }
+
+    @BindingAdapter({ "bind:loadImage" })
+    public static void loadImage(ImageView imageView, String path) {
+        String urlImage = BASE_URL_IMAGE + BACK_DROP_SIZE + path;
+        Glide.with(imageView.getContext()).load(urlImage).into(imageView);
     }
 }

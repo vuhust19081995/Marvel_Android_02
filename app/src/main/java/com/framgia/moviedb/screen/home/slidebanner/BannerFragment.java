@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.framgia.moviedb.R;
 import com.framgia.moviedb.databinding.FragmentBannerBinding;
 import com.framgia.moviedb.screen.BaseFragment;
+import com.framgia.moviedb.utils.Constant;
 
 /**
  * BannerFragment Screen.
@@ -17,15 +18,19 @@ public class BannerFragment extends BaseFragment {
 
     private BannerFragmentContract.ViewModel mViewModel;
 
-    public static BannerFragment newInstance() {
-        return new BannerFragment();
+    public static BannerFragment newInstance(String path) {
+        BannerFragment fragment = new BannerFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(Constant.BUNDLE_PATH, path);
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = new BannerFragmentViewModel();
-
+        String mPath = getArguments().getString(Constant.BUNDLE_PATH);
+        mViewModel = new BannerFragmentViewModel(mPath);
         BannerFragmentContract.Presenter presenter = new BannerFragmentPresenter(mViewModel);
         mViewModel.setPresenter(presenter);
     }

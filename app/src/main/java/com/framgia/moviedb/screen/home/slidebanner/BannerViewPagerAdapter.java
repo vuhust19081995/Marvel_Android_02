@@ -3,6 +3,8 @@ package com.framgia.moviedb.screen.home.slidebanner;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import com.framgia.moviedb.data.model.Movie;
+import java.util.List;
 
 import static com.framgia.moviedb.utils.Constant.BANNER_COUNT;
 
@@ -11,13 +13,17 @@ import static com.framgia.moviedb.utils.Constant.BANNER_COUNT;
  */
 
 public class BannerViewPagerAdapter extends FragmentPagerAdapter {
-    public BannerViewPagerAdapter(FragmentManager fm) {
+    private List<Movie> mMovies;
+
+    public BannerViewPagerAdapter(FragmentManager fm, List<Movie> movies) {
         super(fm);
+        mMovies = movies;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return BannerFragment.newInstance();
+        String path = mMovies.get(position).getBackDropPath();
+        return BannerFragment.newInstance(path);
     }
 
     @Override

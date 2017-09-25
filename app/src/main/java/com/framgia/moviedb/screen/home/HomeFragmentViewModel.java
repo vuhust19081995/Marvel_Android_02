@@ -6,9 +6,10 @@ import android.databinding.Bindable;
 import android.support.v4.app.FragmentManager;
 import android.widget.Toast;
 import com.framgia.moviedb.BR;
-import com.framgia.moviedb.data.model.MovieResponse;
+import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.data.source.MovieRepository;
 import com.framgia.moviedb.screen.home.slidebanner.BannerViewPagerAdapter;
+import java.util.List;
 
 /**
  * Exposes the data to be used in the HomeFragment screen.
@@ -25,9 +26,11 @@ public class HomeFragmentViewModel extends BaseObservable
 
     private Context mContext;
 
+    private FragmentManager mFragmentManager;
+
     public HomeFragmentViewModel(Context context, FragmentManager fragmentManager,
             MovieRepository movieRepository) {
-        setViewPagerAdapter(new BannerViewPagerAdapter(fragmentManager));
+        mFragmentManager = fragmentManager;
         mMovieRepository = movieRepository;
         mContext = context;
     }
@@ -45,6 +48,7 @@ public class HomeFragmentViewModel extends BaseObservable
     @Override
     public void setPresenter(HomeFragmentContract.Presenter presenter) {
         mPresenter = presenter;
+        mPresenter.getMoviePopularResponse();
     }
 
     @Bindable
@@ -58,8 +62,8 @@ public class HomeFragmentViewModel extends BaseObservable
     }
 
     @Override
-    public void onGetMovieSuccess(MovieResponse movieResponse) {
-        // todo later
+    public void onGetMovieSuccess(List<Movie> movies) {
+        setViewPagerAdapter(new BannerViewPagerAdapter(mFragmentManager, movies));
     }
 
     @Override

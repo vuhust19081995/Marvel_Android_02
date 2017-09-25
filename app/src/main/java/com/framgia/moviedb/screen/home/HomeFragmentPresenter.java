@@ -1,11 +1,13 @@
 package com.framgia.moviedb.screen.home;
 
-import com.framgia.moviedb.data.model.MovieResponse;
+import com.framgia.moviedb.BuildConfig;
+import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.data.source.MovieRepository;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import java.util.List;
 
 /**
  * Listens to user actions from the UI ({@link HomeFragment}), retrieves the data and
@@ -36,13 +38,13 @@ public class HomeFragmentPresenter implements HomeFragmentContract.Presenter {
 
     @Override
     public void getMoviePopularResponse() {
-        mCompositeDisposable.add(mMovieRepository.getMoviePopularResponse()
+        mCompositeDisposable.add(mMovieRepository.getMoviePopularResponse(BuildConfig.API_KEY)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<MovieResponse>() {
+                .subscribeWith(new DisposableObserver<List<Movie>>() {
 
                     @Override
-                    public void onNext(MovieResponse value) {
+                    public void onNext(List<Movie> value)  {
                         mViewModel.onGetMovieSuccess(value);
                     }
 
