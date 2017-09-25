@@ -6,7 +6,7 @@ package com.framgia.moviedb.utils;
 
 public final class Constant {
     public static final String BASE_URL_IMAGE = "http://image.tmdb.org/t/p/";
-    public static final String END_POINT_URL = "https://api.themoviedb.org/3";
+    public static final String BASE_URL_API = "https://api.themoviedb.org/3/";
     public static final String BACK_DROP_SIZE = "w300";
     public static final String POSTER_SIZE = "w500";
     public static final String DRAWER_OPEN = "OPEN";
