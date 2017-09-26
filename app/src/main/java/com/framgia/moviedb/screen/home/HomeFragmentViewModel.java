@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.framgia.moviedb.BR;
 import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.data.source.MovieRepository;
+import com.framgia.moviedb.screen.MovieAdapter;
 import com.framgia.moviedb.screen.home.slidebanner.BannerViewPagerAdapter;
 import java.util.List;
 
@@ -17,6 +18,8 @@ import java.util.List;
 
 public class HomeFragmentViewModel extends BaseObservable
         implements HomeFragmentContract.ViewModel {
+
+    public static final int SPAN_COUNT = 2;
 
     private HomeFragmentContract.Presenter mPresenter;
 
@@ -28,11 +31,17 @@ public class HomeFragmentViewModel extends BaseObservable
 
     private FragmentManager mFragmentManager;
 
+    private MovieAdapter mMovieAdapter;
+
     public HomeFragmentViewModel(Context context, FragmentManager fragmentManager,
             MovieRepository movieRepository) {
         mFragmentManager = fragmentManager;
         mMovieRepository = movieRepository;
         mContext = context;
+    }
+
+    public static int getSpanCount() {
+        return SPAN_COUNT;
     }
 
     @Override
@@ -49,6 +58,7 @@ public class HomeFragmentViewModel extends BaseObservable
     public void setPresenter(HomeFragmentContract.Presenter presenter) {
         mPresenter = presenter;
         mPresenter.getMoviePopularResponse();
+        mPresenter.getMovieTopRateResponse();
     }
 
     @Bindable
@@ -61,13 +71,33 @@ public class HomeFragmentViewModel extends BaseObservable
         notifyPropertyChanged(BR.viewPagerAdapter);
     }
 
+    @Bindable
+    public MovieAdapter getMovieAdapter() {
+        return mMovieAdapter;
+    }
+
+    public void setMovieAdapter(MovieAdapter movieAdapter) {
+        mMovieAdapter = movieAdapter;
+        notifyPropertyChanged(BR.movieAdapter);
+    }
+
     @Override
-    public void onGetMovieSuccess(List<Movie> movies) {
+    public void onGetMoviePopularSuccess(List<Movie> movies) {
         setViewPagerAdapter(new BannerViewPagerAdapter(mFragmentManager, movies));
     }
 
     @Override
-    public void onGetMovieError(String msg) {
+    public void onGetMoviePopularError(String msg) {
+        Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onGetMovieTopRateSuccess(List<Movie> movies) {
+        setMovieAdapter(new MovieAdapter(movies));
+    }
+
+    @Override
+    public void onGetMovieTopRateError(String msg) {
         Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
     }
 }

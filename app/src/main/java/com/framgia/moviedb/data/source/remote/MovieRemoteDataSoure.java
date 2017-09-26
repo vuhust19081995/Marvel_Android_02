@@ -29,4 +29,16 @@ public class MovieRemoteDataSoure extends BaseRemoteDataSoure
                     }
                 });
     }
+
+    @Override
+    public Observable<List<Movie>> getMovieTopRateResponse(String apiKey) {
+        return mMovieApi.getMovieTopRatedResponse(apiKey)
+                .map(new Function<MovieResponse, List<Movie>>() {
+
+                    @Override
+                    public List<Movie> apply(MovieResponse movieResponse) throws Exception {
+                        return movieResponse.getMovieList();
+                    }
+                });
+    }
 }

@@ -13,9 +13,13 @@ interface HomeFragmentContract {
      * View.
      */
     interface ViewModel extends BaseViewModel<Presenter> {
-        void onGetMovieSuccess(List<Movie> movies);
+        void onGetMoviePopularSuccess(List<Movie> movies);
 
-        void onGetMovieError(String msg);
+        void onGetMoviePopularError(String msg);
+
+        void onGetMovieTopRateSuccess(List<Movie> movies);
+
+        void onGetMovieTopRateError(String msg);
     }
 
     /**
@@ -23,5 +27,7 @@ interface HomeFragmentContract {
      */
     interface Presenter extends BasePresenter {
         void getMoviePopularResponse();
+
+        void getMovieTopRateResponse();
     }
 }
