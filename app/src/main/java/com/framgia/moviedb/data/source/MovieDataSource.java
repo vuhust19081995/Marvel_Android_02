@@ -19,5 +19,8 @@ public interface MovieDataSource {
 
         Observable<List<Movie>> getMovieTopRateResponse(String apiKey);
 
+        Observable<List<Movie>> getMovieNowPlayingResponse(String apiKey);
+
+        Observable<List<Movie>> getMovieUpComingResponse(String apiKey);
     }
 }

@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import com.framgia.moviedb.BR;
 import com.framgia.moviedb.R;
 import com.framgia.moviedb.screen.home.HomeFragment;
+import com.framgia.moviedb.screen.main.movies.MovieFragment;
+import com.framgia.moviedb.utils.Constant;
 
 import static com.framgia.moviedb.utils.Constant.DRAWER_CLOSE;
 import static com.framgia.moviedb.utils.Constant.DRAWER_OPEN;
@@ -24,10 +26,12 @@ public class MainViewModel extends BaseObservable
     private String mDrawerState;
     private FragmentManager mFragmentManager;
     private Fragment mFragment;
+    private String mCategory;
 
     public MainViewModel(FragmentManager fragmentManager) {
         setDrawerState(DRAWER_CLOSE);
         mFragmentManager = fragmentManager;
+        setCategory(Constant.CATEGORY_HOME);
         setFragment(HomeFragment.newInstance());
     }
 
@@ -66,7 +70,24 @@ public class MainViewModel extends BaseObservable
         int id = item.getItemId();
         switch (id) {
             case R.id.menu_item_home:
+                setCategory(Constant.CATEGORY_HOME);
                 setFragment(HomeFragment.newInstance());
+                break;
+            case R.id.menu_item_now_playing:
+                setCategory(Constant.CATEGORY_NOW_PLAYING);
+                setFragment(MovieFragment.newInstance(getCategory()));
+                break;
+            case R.id.menu_item_up_coming:
+                setCategory(Constant.CATEGORY_UPCOMING);
+                setFragment(MovieFragment.newInstance(getCategory()));
+                break;
+            case R.id.menu_item_genres:
+                setCategory(Constant.CATEGORY_GENRES);
+                setFragment(MovieFragment.newInstance(getCategory()));
+                break;
+            case R.id.menu_item_favorite:
+                setCategory(Constant.CATEGORY_FAVORITE);
+                setFragment(MovieFragment.newInstance(getCategory()));
                 break;
             default:
                 // todo later
@@ -88,5 +109,15 @@ public class MainViewModel extends BaseObservable
     public void setFragment(Fragment fragment) {
         mFragment = fragment;
         notifyPropertyChanged(BR.fragment);
+    }
+
+    @Bindable
+    public String getCategory() {
+        return mCategory;
+    }
+
+    public void setCategory(String category) {
+        mCategory = category;
+        notifyPropertyChanged(BR.category);
     }
 }
