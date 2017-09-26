@@ -13,12 +13,14 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.framgia.moviedb.R;
 import com.framgia.moviedb.utils.Constant;
+import com.framgia.moviedb.utils.LayoutManagers;
 
 import static com.framgia.moviedb.utils.Constant.BACK_DROP_SIZE;
 import static com.framgia.moviedb.utils.Constant.BASE_URL_IMAGE;
@@ -85,5 +87,17 @@ public final class BindingUtils {
     public static void loadImage(ImageView imageView, String path) {
         String urlImage = BASE_URL_IMAGE + BACK_DROP_SIZE + path;
         Glide.with(imageView.getContext()).load(urlImage).into(imageView);
+    }
+
+    @BindingAdapter({ "bind:recyclerAdapter" })
+    public static void setAdapterForRecyclerView(RecyclerView recyclerView,
+            RecyclerView.Adapter adapter) {
+        recyclerView.setAdapter(adapter);
+    }
+
+    @BindingAdapter("layoutManager")
+    public static void setLayoutManager(RecyclerView recyclerView,
+            LayoutManagers.LayoutManagerFactory layoutManagerFactory) {
+        recyclerView.setLayoutManager(layoutManagerFactory.create(recyclerView));
     }
 }

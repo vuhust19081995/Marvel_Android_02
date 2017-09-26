@@ -16,5 +16,8 @@ public interface MovieDataSource {
 
     interface RemoteDataSource {
         Observable<List<Movie>> getMoviePopularResponse(String apiKey);
+
+        Observable<List<Movie>> getMovieTopRateResponse(String apiKey);
+
     }
 }

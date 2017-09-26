@@ -44,13 +44,36 @@ public class HomeFragmentPresenter implements HomeFragmentContract.Presenter {
                 .subscribeWith(new DisposableObserver<List<Movie>>() {
 
                     @Override
-                    public void onNext(List<Movie> value)  {
-                        mViewModel.onGetMovieSuccess(value);
+                    public void onNext(List<Movie> value) {
+                        mViewModel.onGetMoviePopularSuccess(value);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        mViewModel.onGetMovieError(e.getMessage());
+                        mViewModel.onGetMoviePopularError(e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                }));
+    }
+
+    @Override
+    public void getMovieTopRateResponse() {
+        mCompositeDisposable.add(mMovieRepository.getMovieTopRateResponse(BuildConfig.API_KEY)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<List<Movie>>() {
+                    @Override
+                    public void onNext(List<Movie> value) {
+                        mViewModel.onGetMovieTopRateSuccess(value);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mViewModel.onGetMovieTopRateError(e.getMessage());
                     }
 
                     @Override
