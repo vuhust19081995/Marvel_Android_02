@@ -15,9 +15,9 @@
             android:icon="@drawable/icon_upcoming"
             android:title="@string/title_menu_upcoming"/>
         <item
-            android:id="@+id/menu_item_top_rate"
+            android:id="@+id/menu_item_popular"
             android:icon="@drawable/icon_top_rate"
-            android:title="@string/title_menu_top_rate"/>
+            android:title="@string/title_menu_popular"/>
         <item
             android:id="@+id/menu_item_genres"
             android:icon="@drawable/icon_genres"

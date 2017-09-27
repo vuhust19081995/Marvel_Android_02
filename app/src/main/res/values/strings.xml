@@ -5,7 +5,7 @@
     <string name="title_menu_home">Home</string>
     <string name="title_menu_now_playing">Now playing</string>
     <string name="title_menu_upcoming">Upcoming</string>
-    <string name="title_menu_top_rate">Top rate</string>
+    <string name="title_menu_popular">Popular</string>
     <string name="title_menu_genres">Genres</string>
     <string name="title_menu_favorite">Favorite</string>
     <string name="description_logo_app">Logo App</string>
