@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import com.framgia.moviedb.BR;
 import com.framgia.moviedb.R;
 import com.framgia.moviedb.screen.home.HomeFragment;
+import com.framgia.moviedb.screen.main.genres.GenreFragment;
 import com.framgia.moviedb.screen.main.movies.MovieFragment;
 import com.framgia.moviedb.utils.Constant;
 
@@ -77,13 +78,17 @@ public class MainViewModel extends BaseObservable
                 setCategory(Constant.CATEGORY_NOW_PLAYING);
                 setFragment(MovieFragment.newInstance(getCategory()));
                 break;
+            case R.id.menu_item_popular:
+                setCategory(Constant.CATEGORY_POPULAR);
+                setFragment(MovieFragment.newInstance(getCategory()));
+                break;
             case R.id.menu_item_up_coming:
                 setCategory(Constant.CATEGORY_UPCOMING);
                 setFragment(MovieFragment.newInstance(getCategory()));
                 break;
             case R.id.menu_item_genres:
                 setCategory(Constant.CATEGORY_GENRES);
-                setFragment(MovieFragment.newInstance(getCategory()));
+                setFragment(GenreFragment.newInstance());
                 break;
             case R.id.menu_item_favorite:
                 setCategory(Constant.CATEGORY_FAVORITE);
