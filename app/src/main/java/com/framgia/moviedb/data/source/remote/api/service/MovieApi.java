@@ -19,7 +19,7 @@ public interface MovieApi {
     Observable<MovieResponse> getMovieTopRatedResponse(@Query("api_key") String apiKey);
 
     @GET("movie/upcoming")
-    Observable<MovieResponse> getMovieUpComingResponse(@Query("api+key") String apiKey);
+    Observable<MovieResponse> getMovieUpComingResponse(@Query("api_key") String apiKey);
 
     @GET("movie/now_playing")
     Observable<MovieResponse> getMovieNowPlayingResponse(@Query("api_key") String apiKey);

@@ -6,32 +6,54 @@
     <data>
         <variable
             name="movie"
-            type="com.framgia.moviedb.data.model.Movie"/>
+            type="com.framgia.moviedb.data.model.Movie"
+            />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/item_movie_height"
+        android:layout_margin="@dimen/margin_10dp"
         android:background="@color/color_black"
         android:orientation="vertical"
         >
 
-        <ImageView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/view_pager_height"
-            android:layout_gravity="center"
-            android:scaleType="fitXY"
-            bind:loadImage="@{movie.backDropPath}"
-            tools:ignore="ContentDescription"
-            />
+            android:layout_height="@dimen/item_image_height"
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_image_height"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                bind:loadImage="@{movie.backDropPath}"
+                tools:ignore="ContentDescription"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/margin_5dp"
+                android:layout_marginLeft="@dimen/margin_5dp"
+                android:background="@color/color_transparent"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_10sp"
+                />
+        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_5dp"
+            android:layout_marginRight="@dimen/margin_5dp"
+            android:layout_marginTop="@dimen/margin_10dp"
             android:maxLines="1"
             android:text="@{movie.title}"
             android:textColor="@color/color_white"
-            android:textSize="20sp"
+            android:textSize="@dimen/text_15dp"
             />
 
     </LinearLayout>
