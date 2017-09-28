@@ -14,6 +14,8 @@ import java.util.List;
  */
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MoviewViewHolder> {
+    private int mLastVisibleItem;
+    private int mTotalItemCount;
     private List<Movie> mMovies;
     private OnRecyclerViewItemClickListener<Movie> mClickListener;
 
@@ -41,7 +43,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MoviewViewHo
     public void setOnItemClickListener(OnRecyclerViewItemClickListener<Movie> onItemClickListener) {
         mClickListener = onItemClickListener;
     }
-
     /**
      * Create ViewHolder
      */

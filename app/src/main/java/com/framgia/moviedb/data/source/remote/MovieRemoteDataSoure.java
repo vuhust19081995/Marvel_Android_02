@@ -65,4 +65,9 @@ public class MovieRemoteDataSoure extends BaseRemoteDataSoure
                     }
                 });
     }
+
+    @Override
+    public Observable<Movie> getDetail(String apiKey, int id) {
+        return mMovieApi.getDetail(id, apiKey);
+    }
 }

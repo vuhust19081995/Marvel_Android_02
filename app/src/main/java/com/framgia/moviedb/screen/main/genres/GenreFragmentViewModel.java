@@ -15,6 +15,7 @@ import java.util.List;
 
 public class GenreFragmentViewModel extends BaseObservable
         implements GenreFragmentContract.ViewModel, OnRecyclerViewItemClickListener<Genre> {
+
     private Context mContext;
 
     private GenreFragmentContract.Presenter mPresenter;
