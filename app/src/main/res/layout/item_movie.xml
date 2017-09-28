@@ -8,6 +8,11 @@
             name="movie"
             type="com.framgia.moviedb.data.model.Movie"
             />
+        <variable
+            name="itemClickListener"
+            type="com.framgia.moviedb.screen.OnRecyclerViewItemClickListener"
+            />
+        />
     </data>
 
     <LinearLayout
@@ -27,6 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/item_image_height"
                 android:layout_gravity="center"
+                android:onClick="@{() -> itemClickListener.onClick(movie)}"
                 android:scaleType="fitXY"
                 bind:loadImage="@{movie.backDropPath}"
                 tools:ignore="ContentDescription"

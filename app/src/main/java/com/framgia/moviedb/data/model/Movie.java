@@ -33,6 +33,9 @@ public class Movie extends BaseModel {
     @SerializedName("runtime")
     @Expose
     private int mDuration;
+    @SerializedName("genres")
+    @Expose
+    private List<Genre> mGenreList;
 
     public String getPosterPath() {
         return mPosterPath;
@@ -96,5 +99,13 @@ public class Movie extends BaseModel {
 
     public void setDuration(int duration) {
         mDuration = duration;
+    }
+
+    public List<Genre> getGenreList() {
+        return mGenreList;
+    }
+
+    public void setGenreList(List<Genre> genreList) {
+        mGenreList = genreList;
     }
 }

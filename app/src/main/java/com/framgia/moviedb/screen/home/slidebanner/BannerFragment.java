@@ -18,10 +18,11 @@ public class BannerFragment extends BaseFragment {
 
     private BannerFragmentContract.ViewModel mViewModel;
 
-    public static BannerFragment newInstance(String path) {
+    public static BannerFragment newInstance(String path, int id) {
         BannerFragment fragment = new BannerFragment();
         Bundle bundle = new Bundle();
         bundle.putString(Constant.BUNDLE_PATH, path);
+        bundle.putInt(Constant.BUNDLE_ID_MOVIE, id);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -29,8 +30,9 @@ public class BannerFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String mPath = getArguments().getString(Constant.BUNDLE_PATH);
-        mViewModel = new BannerFragmentViewModel(mPath);
+        String path = getArguments().getString(Constant.BUNDLE_PATH);
+        int id = getArguments().getInt(Constant.BUNDLE_ID_MOVIE);
+        mViewModel = new BannerFragmentViewModel(getActivity(), path, id);
         BannerFragmentContract.Presenter presenter = new BannerFragmentPresenter(mViewModel);
         mViewModel.setPresenter(presenter);
     }

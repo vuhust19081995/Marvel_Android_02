@@ -1,8 +1,8 @@
 package com.framgia.moviedb.screen.home.slidebanner;
 
+import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-import com.framgia.moviedb.BR;
 
 /**
  * Exposes the data to be used in the BannerFragment screen.
@@ -11,12 +11,18 @@ import com.framgia.moviedb.BR;
 public class BannerFragmentViewModel extends BaseObservable
         implements BannerFragmentContract.ViewModel {
 
+    private Context mContext;
+
     private BannerFragmentContract.Presenter mPresenter;
 
     private String mPath;
 
-    public BannerFragmentViewModel(String path) {
+    private int mMovieId;
+
+    public BannerFragmentViewModel(Context context, String path, int movieId) {
+        mContext = context;
         mPath = path;
+        mMovieId = movieId;
     }
 
     @Override
@@ -39,8 +45,7 @@ public class BannerFragmentViewModel extends BaseObservable
         return mPath;
     }
 
-    public void setPath(String path) {
-        mPath = path;
-        notifyPropertyChanged(BR.path);
+    public void onClick() {
+        // todo later
     }
 }

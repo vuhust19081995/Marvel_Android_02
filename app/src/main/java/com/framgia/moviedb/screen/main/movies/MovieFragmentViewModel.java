@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.framgia.moviedb.BR;
 import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.screen.MovieAdapter;
+import com.framgia.moviedb.screen.OnRecyclerViewItemClickListener;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  */
 
 public class MovieFragmentViewModel extends BaseObservable
-        implements MovieFragmentContract.ViewModel {
+        implements MovieFragmentContract.ViewModel, OnRecyclerViewItemClickListener<Movie> {
 
     public static final int SPAN_COUNT = 2;
 
@@ -69,6 +70,12 @@ public class MovieFragmentViewModel extends BaseObservable
 
     public void setMovieAdapter(MovieAdapter movieAdapter) {
         mMovieAdapter = movieAdapter;
+        mMovieAdapter.setOnItemClickListener(this);
         notifyPropertyChanged(BR.movieAdapter);
+    }
+
+    @Override
+    public void onClick(Movie movie) {
+        // todo later
     }
 }

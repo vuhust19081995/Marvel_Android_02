@@ -18,7 +18,8 @@ public final class Constant {
     public static final String DRAWER_OPEN = "OPEN";
     public static final String DRAWER_CLOSE = "CLOSE";
     public static final String BUNDLE_PATH = "path";
-    public static final String BUNDLE_CATEGORY = "category";
+    public static final String BUNDLE_ID_MOVIE = "BUNDLE_ID_MOVIE";
+    public static final String BUNDLE_CATEGORY = "BUNDLE_CATEGORY";
     public static final int BANNER_COUNT = 5;
 
     private Constant() {
