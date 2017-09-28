@@ -15,6 +15,7 @@ import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MoviewViewHolder> {
     private List<Movie> mMovies;
+    private OnRecyclerViewItemClickListener<Movie> mClickListener;
 
     public MovieAdapter(List<Movie> movies) {
         mMovies = movies;
@@ -24,7 +25,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MoviewViewHo
     public MoviewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ItemMovieBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
                 R.layout.item_movie, parent, false);
-        return new MoviewViewHolder(binding);
+        return new MoviewViewHolder(binding, mClickListener);
     }
 
     @Override
@@ -37,19 +38,27 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MoviewViewHo
         return mMovies != null ? mMovies.size() : 0;
     }
 
+    public void setOnItemClickListener(OnRecyclerViewItemClickListener<Movie> onItemClickListener) {
+        mClickListener = onItemClickListener;
+    }
+
     /**
      * Create ViewHolder
      */
     class MoviewViewHolder extends RecyclerView.ViewHolder {
         private ItemMovieBinding mBinding;
+        private OnRecyclerViewItemClickListener<Movie> mClickListener;
 
-        MoviewViewHolder(ItemMovieBinding binding) {
+        MoviewViewHolder(ItemMovieBinding binding,
+                OnRecyclerViewItemClickListener<Movie> onItemClickListener) {
             super(binding.getRoot());
             mBinding = binding;
+            mClickListener = onItemClickListener;
         }
 
         public void bind(Movie movie) {
             mBinding.setMovie(movie);
+            mBinding.setItemClickListener(mClickListener);
             mBinding.executePendingBindings();
         }
     }

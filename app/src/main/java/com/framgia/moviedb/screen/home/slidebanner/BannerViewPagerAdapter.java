@@ -23,7 +23,8 @@ public class BannerViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         String path = mMovies.get(position).getBackDropPath();
-        return BannerFragment.newInstance(path);
+        int idMovie = mMovies.get(position).getId();
+        return BannerFragment.newInstance(path, idMovie);
     }
 
     @Override

@@ -9,6 +9,7 @@ import com.framgia.moviedb.BR;
 import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.data.source.MovieRepository;
 import com.framgia.moviedb.screen.MovieAdapter;
+import com.framgia.moviedb.screen.OnRecyclerViewItemClickListener;
 import com.framgia.moviedb.screen.home.slidebanner.BannerViewPagerAdapter;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import java.util.List;
  */
 
 public class HomeFragmentViewModel extends BaseObservable
-        implements HomeFragmentContract.ViewModel {
+        implements HomeFragmentContract.ViewModel, OnRecyclerViewItemClickListener<Movie> {
 
     public static final int SPAN_COUNT = 2;
 
@@ -78,6 +79,7 @@ public class HomeFragmentViewModel extends BaseObservable
 
     public void setMovieAdapter(MovieAdapter movieAdapter) {
         mMovieAdapter = movieAdapter;
+        mMovieAdapter.setOnItemClickListener(this);
         notifyPropertyChanged(BR.movieAdapter);
     }
 
@@ -99,5 +101,10 @@ public class HomeFragmentViewModel extends BaseObservable
     @Override
     public void onGetMovieTopRateError(String msg) {
         Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClick(Movie movie) {
+        // todo later
     }
 }

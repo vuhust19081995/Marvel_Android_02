@@ -6,8 +6,12 @@
 
     <data>
         <variable
-            name="viewModel"
+            name="genre"
             type="com.framgia.moviedb.data.model.Genre"
+            />
+        <variable
+            name="itemClickListener"
+            type="com.framgia.moviedb.screen.OnRecyclerViewItemClickListener"
             />
     </data>
 
@@ -17,7 +21,8 @@
         android:layout_gravity="center"
         android:background="@color/color_black"
         android:gravity="center"
-        android:text="@{viewModel.nameGenre}"
+        android:onClick="@{() -> itemClickListener.onClick(genre)}"
+        android:text="@{genre.nameGenre}"
         android:textColor="@color/color_white"
         android:textSize="@dimen/text_20sp"
         />

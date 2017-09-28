@@ -6,6 +6,7 @@ import android.databinding.Bindable;
 import android.widget.Toast;
 import com.framgia.moviedb.BR;
 import com.framgia.moviedb.data.model.Genre;
+import com.framgia.moviedb.screen.OnRecyclerViewItemClickListener;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  */
 
 public class GenreFragmentViewModel extends BaseObservable
-        implements GenreFragmentContract.ViewModel {
+        implements GenreFragmentContract.ViewModel, OnRecyclerViewItemClickListener<Genre> {
     private Context mContext;
 
     private GenreFragmentContract.Presenter mPresenter;
@@ -62,6 +63,12 @@ public class GenreFragmentViewModel extends BaseObservable
 
     public void setAdapter(GenreAdapter adapter) {
         mAdapter = adapter;
+        mAdapter.setOnItemClickListener(this);
         notifyPropertyChanged(BR.adapter);
+    }
+
+    @Override
+    public void onClick(Genre genre) {
+        // todo later
     }
 }
