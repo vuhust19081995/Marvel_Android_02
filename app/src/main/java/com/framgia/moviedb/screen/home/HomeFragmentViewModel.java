@@ -19,7 +19,6 @@ import java.util.List;
 
 public class HomeFragmentViewModel extends BaseObservable
         implements HomeFragmentContract.ViewModel, OnRecyclerViewItemClickListener<Movie> {
-
     public static final int SPAN_COUNT = 2;
 
     private HomeFragmentContract.Presenter mPresenter;

@@ -1,5 +1,7 @@
 package com.framgia.moviedb.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
@@ -8,7 +10,18 @@ import java.util.List;
  * Created by workspace on 22/09/2017.
  */
 
-public class Movie extends BaseModel {
+public class Movie extends BaseModel implements Parcelable {
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
     @SerializedName("poster_path")
     @Expose
     private String mPosterPath;
@@ -36,6 +49,17 @@ public class Movie extends BaseModel {
     @SerializedName("genres")
     @Expose
     private List<Genre> mGenreList;
+
+    protected Movie(Parcel in) {
+        setId(in.readInt());
+        mPosterPath = in.readString();
+        mVoteAverage = in.readFloat();
+        mTitle = in.readString();
+        mOrigitalTitle = in.readString();
+        mBackDropPath = in.readString();
+        mOverview = in.readString();
+        mDuration = in.readInt();
+    }
 
     public String getPosterPath() {
         return mPosterPath;
@@ -107,5 +131,22 @@ public class Movie extends BaseModel {
 
     public void setGenreList(List<Genre> genreList) {
         mGenreList = genreList;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(getId());
+        parcel.writeString(mPosterPath);
+        parcel.writeFloat(mVoteAverage);
+        parcel.writeString(mTitle);
+        parcel.writeString(mOrigitalTitle);
+        parcel.writeString(mBackDropPath);
+        parcel.writeString(mOverview);
+        parcel.writeInt(mDuration);
     }
 }
