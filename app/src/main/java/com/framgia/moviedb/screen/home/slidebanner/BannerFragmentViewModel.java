@@ -3,6 +3,7 @@ package com.framgia.moviedb.screen.home.slidebanner;
 import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import com.framgia.moviedb.screen.detail.DetailActivity;
 
 /**
  * Exposes the data to be used in the BannerFragment screen.
@@ -46,6 +47,6 @@ public class BannerFragmentViewModel extends BaseObservable
     }
 
     public void onClick() {
-        // todo later
+        mContext.startActivity(DetailActivity.newIntentDetail(mContext, mMovieId));
     }
 }

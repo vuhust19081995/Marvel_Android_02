@@ -10,6 +10,7 @@ import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.data.source.MovieRepository;
 import com.framgia.moviedb.screen.MovieAdapter;
 import com.framgia.moviedb.screen.OnRecyclerViewItemClickListener;
+import com.framgia.moviedb.screen.detail.DetailActivity;
 import com.framgia.moviedb.screen.home.slidebanner.BannerViewPagerAdapter;
 import java.util.List;
 
@@ -104,6 +105,6 @@ public class HomeFragmentViewModel extends BaseObservable
 
     @Override
     public void onClick(Movie movie) {
-        // todo later
+        mContext.startActivity(DetailActivity.newIntentDetail(mContext, movie.getId()));
     }
 }
