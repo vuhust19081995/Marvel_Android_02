@@ -2,6 +2,7 @@ package com.framgia.moviedb.data.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
 public class VideoResponse extends BaseModel {
     @SerializedName("results")
     @Expose
-    private List<Video> mVideos;
+    private List<Video> mVideos = new ArrayList<>();
 
     public List<Video> getVideos() {
         return mVideos;

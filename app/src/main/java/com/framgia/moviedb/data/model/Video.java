@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by workspace on 27/09/2017.
  */
 
-public class Video extends BaseModel {
+public class Video {
     @SerializedName("key")
     @Expose
     private String mKeyVideo;

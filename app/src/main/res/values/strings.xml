@@ -9,4 +9,7 @@
     <string name="title_menu_genres">Genres</string>
     <string name="title_menu_favorite">Favorite</string>
     <string name="description_logo_app">Logo App</string>
+    <string name="title_actors">Actors:</string>
+    <string name="title_producers">Producers:</string>
+    <string name="title_genres">Genres:</string>
 </resources>
