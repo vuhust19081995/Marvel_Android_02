@@ -8,6 +8,7 @@ import com.framgia.moviedb.BR;
 import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.screen.MovieAdapter;
 import com.framgia.moviedb.screen.OnRecyclerViewItemClickListener;
+import com.framgia.moviedb.screen.detail.DetailActivity;
 import java.util.List;
 
 /**
@@ -76,6 +77,6 @@ public class MovieFragmentViewModel extends BaseObservable
 
     @Override
     public void onClick(Movie movie) {
-        // todo later
+        mContext.startActivity(DetailActivity.newIntentDetail(mContext, movie.getId()));
     }
 }
