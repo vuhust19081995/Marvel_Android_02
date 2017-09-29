@@ -14,6 +14,9 @@ public class Actor extends BaseModel {
     @SerializedName("name")
     @Expose
     private String mNameActor;
+    @SerializedName("profile_path")
+    @Expose
+    private String mActorUrl;
 
     public String getCharacter() {
         return mCharacter;
@@ -29,5 +32,13 @@ public class Actor extends BaseModel {
 
     public void setNameActor(String nameActor) {
         mNameActor = nameActor;
+    }
+
+    public String getActorUrl() {
+        return mActorUrl;
+    }
+
+    public void setActorUrl(String actorUrl) {
+        mActorUrl = actorUrl;
     }
 }

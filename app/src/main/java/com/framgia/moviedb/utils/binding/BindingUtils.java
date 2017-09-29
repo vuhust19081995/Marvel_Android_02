@@ -89,7 +89,10 @@ public final class BindingUtils {
     @BindingAdapter({ "bind:loadImage" })
     public static void loadImage(ImageView imageView, String path) {
         String urlImage = BASE_URL_IMAGE + BACK_DROP_SIZE + path;
-        Glide.with(imageView.getContext()).load(urlImage).into(imageView);
+        Glide.with(imageView.getContext())
+                .load(urlImage)
+                .placeholder(R.drawable.image_default)
+                .into(imageView);
     }
 
     @BindingAdapter({ "bind:recyclerAdapter" })
