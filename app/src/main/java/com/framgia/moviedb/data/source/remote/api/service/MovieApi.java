@@ -5,7 +5,6 @@ import com.framgia.moviedb.data.model.GenreResponse;
 import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.data.model.MovieResponse;
 import com.framgia.moviedb.data.model.VideoResponse;
-import com.framgia.moviedb.data.source.MovieRepository;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -43,6 +42,6 @@ public interface MovieApi {
             @Query("api_key") String apiKey);
 
     @GET("genre/{genre_id}/movies")
-    Observable<MovieRepository> getMoviesByIdGenre(@Path("genre_id") int id,
+    Observable<MovieResponse> getMoviesByIdGenre(@Path("genre_id") int id,
             @Query("api_key") String apiKey);
 }

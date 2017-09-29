@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.framgia.moviedb.BR;
 import com.framgia.moviedb.data.model.Genre;
 import com.framgia.moviedb.screen.OnRecyclerViewItemClickListener;
+import com.framgia.moviedb.screen.movie.MovieActivity;
 import java.util.List;
 
 /**
@@ -70,6 +71,6 @@ public class GenreFragmentViewModel extends BaseObservable
 
     @Override
     public void onClick(Genre genre) {
-        // todo later
+        mContext.startActivity(MovieActivity.newInstance(mContext, genre.getId()));
     }
 }

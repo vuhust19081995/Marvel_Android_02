@@ -96,10 +96,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/poster_image_height"
+                android:padding="@dimen/dp_3"
                 >
                 <ImageView
                     android:layout_width="@dimen/poster_image_width"
                     android:layout_height="@dimen/poster_image_height"
+                    android:scaleType="fitXY"
                     bind:loadImage="@{viewModel.movie.posterPath}"
                     tools:ignore="ContentDescription"
                     />
@@ -112,7 +114,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/margin_5dp"
-                        android:padding="@dimen/dp_3"
                         android:text="@{viewModel.movie.overview}"
                         android:textColor="@color/color_white"
                         android:textSize="@dimen/text_overview_size"

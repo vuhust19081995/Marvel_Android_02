@@ -67,6 +67,18 @@ public class MovieRemoteDataSoure extends BaseRemoteDataSoure
     }
 
     @Override
+    public Observable<List<Movie>> getMovieByIdGenre(String apiKey, int genreId) {
+        return mMovieApi.getMoviesByIdGenre(genreId, apiKey)
+                .map(new Function<MovieResponse, List<Movie>>() {
+
+                    @Override
+                    public List<Movie> apply(MovieResponse movieResponse) throws Exception {
+                        return movieResponse.getMovieList();
+                    }
+                });
+    }
+
+    @Override
     public Observable<Movie> getDetail(String apiKey, int id) {
         return mMovieApi.getDetail(id, apiKey);
     }

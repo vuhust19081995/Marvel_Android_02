@@ -36,6 +36,11 @@ public class MovieRepository implements MovieDataSource.RemoteDataSource {
     }
 
     @Override
+    public Observable<List<Movie>> getMovieByIdGenre(String apiKey, int genreId) {
+        return mMovieRemoteDataSource.getMovieByIdGenre(apiKey, genreId);
+    }
+
+    @Override
     public Observable<Movie> getDetail(String apiKey, int id) {
         return mMovieRemoteDataSource.getDetail(apiKey, id);
     }
