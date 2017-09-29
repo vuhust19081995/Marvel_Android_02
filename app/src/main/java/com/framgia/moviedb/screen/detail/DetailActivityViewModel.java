@@ -2,10 +2,14 @@ package com.framgia.moviedb.screen.detail;
 
 import android.content.Context;
 import android.databinding.BaseObservable;
+import android.databinding.Bindable;
 import android.widget.Toast;
+import com.framgia.moviedb.BR;
 import com.framgia.moviedb.data.model.Actor;
 import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.data.model.Video;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
 import java.util.List;
 
 /**
@@ -13,9 +17,9 @@ import java.util.List;
  */
 
 public class DetailActivityViewModel extends BaseObservable
-        implements DetailActivityContract.ViewModel {
-
+        implements DetailActivityContract.ViewModel, YouTubePlayer.OnInitializedListener {
     private static final int RECOVERY_DIALOG_REQUEST = 1;
+    private static final int POSITION = 0;
     private Context mContext;
 
     private DetailActivityContract.Presenter mPresenter;
@@ -23,6 +27,8 @@ public class DetailActivityViewModel extends BaseObservable
     private int mMovieId;
 
     private String mVideoId;
+
+    private Movie mMovie;
 
     public DetailActivityViewModel(Context context, int movieId) {
         mContext = context;
@@ -59,7 +65,7 @@ public class DetailActivityViewModel extends BaseObservable
 
     @Override
     public void onGetVideoResponseSuccess(List<Video> videos) {
-        mVideoId = videos.get(0).getKeyVideo();
+        mVideoId = videos.get(POSITION).getKeyVideo();
     }
 
     @Override
@@ -79,11 +85,34 @@ public class DetailActivityViewModel extends BaseObservable
 
     @Override
     public void onGetMovieDetailSuccess(Movie movie) {
-
+        setMovie(movie);
     }
 
     @Override
     public void onGetMovieDetailError(String msg) {
         Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onInitializationSuccess(YouTubePlayer.Provider provider,
+            YouTubePlayer youTubePlayer, boolean b) {
+        if (!b) {
+            youTubePlayer.loadVideo(mVideoId);
+        }
+    }
+
+    @Override
+    public void onInitializationFailure(YouTubePlayer.Provider provider,
+            YouTubeInitializationResult youTubeInitializationResult) {
+    }
+
+    @Bindable
+    public Movie getMovie() {
+        return mMovie;
+    }
+
+    public void setMovie(Movie movie) {
+        mMovie = movie;
+        notifyPropertyChanged(BR.movie);
     }
 }

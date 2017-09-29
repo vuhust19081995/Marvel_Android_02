@@ -14,8 +14,6 @@ import java.util.List;
  */
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MoviewViewHolder> {
-    private int mLastVisibleItem;
-    private int mTotalItemCount;
     private List<Movie> mMovies;
     private OnRecyclerViewItemClickListener<Movie> mClickListener;
 

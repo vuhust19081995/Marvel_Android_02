@@ -18,9 +18,12 @@ import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
+import com.framgia.moviedb.BuildConfig;
 import com.framgia.moviedb.R;
 import com.framgia.moviedb.utils.Constant;
 import com.framgia.moviedb.utils.LayoutManagers;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
 
 import static com.framgia.moviedb.utils.Constant.BACK_DROP_SIZE;
 import static com.framgia.moviedb.utils.Constant.BASE_URL_IMAGE;
@@ -99,5 +102,11 @@ public final class BindingUtils {
     public static void setLayoutManager(RecyclerView recyclerView,
             LayoutManagers.LayoutManagerFactory layoutManagerFactory) {
         recyclerView.setLayoutManager(layoutManagerFactory.create(recyclerView));
+    }
+
+    @BindingAdapter({ "bind:initYoutubePlayer" })
+    public static void initYoutubePlayer(YouTubePlayerView playerView,
+            YouTubePlayer.OnInitializedListener listener) {
+        playerView.initialize(BuildConfig.API_KEY_YOUTUBE, listener);
     }
 }

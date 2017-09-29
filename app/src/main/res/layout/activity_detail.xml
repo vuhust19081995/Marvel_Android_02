@@ -13,24 +13,164 @@
             type="com.framgia.moviedb.screen.detail.DetailActivityViewModel"
             />
 
+        <import type="com.framgia.moviedb.utils.LayoutManagers"/>
+
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:background="@color/color_black"
         >
 
-        <com.google.android.youtube.player.YouTubePlayerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/color_black"
-            />
+            android:orientation="vertical"
+            >
 
-    </LinearLayout>
+            <com.google.android.youtube.player.YouTubePlayerView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/view_pager_height"
+                bind:initYoutubePlayer="@{viewModel}"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_50dp"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:layout_width="@dimen/title_width"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_10dp"
+                    android:layout_marginStart="@dimen/margin_10dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{viewModel.movie.title}"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/text_15dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="@dimen/margin_10dp"
+                    android:layout_marginRight="@dimen/margin_10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    >
+                    <ImageView
+                        android:id="@+id/image_rate"
+                        android:layout_width="@dimen/size_25sp"
+                        android:layout_height="@dimen/size_25sp"
+                        android:src="@drawable/icon_rate"
+                        tools:ignore="ContentDescription"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_10dp"
+                        android:layout_marginStart="@dimen/margin_10dp"
+                        android:text="@{Float.toString(viewModel.movie.voteAverage)}"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/text_15dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/image_favorite"
+                        android:layout_width="@dimen/size_25sp"
+                        android:layout_height="@dimen/size_25sp"
+                        android:layout_marginLeft="@dimen/margin_20dp"
+                        android:layout_marginStart="@dimen/margin_20dp"
+                        android:src="@drawable/icon_favorite"
+                        tools:ignore="ContentDescription"
+                        />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/poster_image_height"
+                >
+                <ImageView
+                    android:layout_width="@dimen/poster_image_width"
+                    android:layout_height="@dimen/poster_image_height"
+                    bind:loadImage="@{viewModel.movie.posterPath}"
+                    tools:ignore="ContentDescription"
+                    />
+
+                <android.support.v4.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_5dp"
+                        android:padding="@dimen/dp_3"
+                        android:text="@{viewModel.movie.overview}"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/text_overview_size"
+                        />
+                </android.support.v4.widget.NestedScrollView>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_10dp"
+                android:text="@string/title_actors"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_15dp"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view_actors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="@{LayoutManagers.linearHorizontal()}"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_10dp"
+                android:text="@string/title_producers"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_15dp"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view_producers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_10dp"
+                android:text="@string/title_genres"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_15dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_10dp"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_10sp"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </layout>
