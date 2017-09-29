@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="actor"
+            type="com.framgia.moviedb.data.model.Actor"
+            />
+        <variable
+            name="itemClickListener"
+            type="com.framgia.moviedb.screen.OnRecyclerViewItemClickListener"
+            />
+    </data>
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/dp_100"
+        android:layout_margin="@dimen/margin_10dp"
+        android:background="@color/color_black"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_70"
+            android:layout_gravity="center"
+            android:onClick="@{() -> itemClickListener.onClick(actor)}"
+            android:scaleType="fitXY"
+            bind:loadImage="@{actor.actorUrl}"
+            tools:ignore="ContentDescription"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin_5dp"
+            android:maxLines="1"
+            android:text="@{actor.nameActor}"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_10sp"
+            />
+
+    </LinearLayout>
+
+</layout>
+

@@ -8,6 +8,7 @@ import com.framgia.moviedb.BR;
 import com.framgia.moviedb.data.model.Actor;
 import com.framgia.moviedb.data.model.Movie;
 import com.framgia.moviedb.data.model.Video;
+import com.framgia.moviedb.screen.OnRecyclerViewItemClickListener;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import java.util.List;
@@ -17,7 +18,8 @@ import java.util.List;
  */
 
 public class DetailActivityViewModel extends BaseObservable
-        implements DetailActivityContract.ViewModel, YouTubePlayer.OnInitializedListener {
+        implements DetailActivityContract.ViewModel, YouTubePlayer.OnInitializedListener,
+        OnRecyclerViewItemClickListener<Actor> {
     private static final int RECOVERY_DIALOG_REQUEST = 1;
     private static final int POSITION = 0;
     private Context mContext;
@@ -29,6 +31,8 @@ public class DetailActivityViewModel extends BaseObservable
     private String mVideoId;
 
     private Movie mMovie;
+
+    private ActorAdapter mActorAdapter;
 
     public DetailActivityViewModel(Context context, int movieId) {
         mContext = context;
@@ -75,7 +79,7 @@ public class DetailActivityViewModel extends BaseObservable
 
     @Override
     public void onGetActorResponseSuccess(List<Actor> actors) {
-
+        setActorAdapter(new ActorAdapter(actors));
     }
 
     @Override
@@ -114,5 +118,21 @@ public class DetailActivityViewModel extends BaseObservable
     public void setMovie(Movie movie) {
         mMovie = movie;
         notifyPropertyChanged(BR.movie);
+    }
+
+    @Bindable
+    public ActorAdapter getActorAdapter() {
+        return mActorAdapter;
+    }
+
+    public void setActorAdapter(ActorAdapter actorAdapter) {
+        mActorAdapter = actorAdapter;
+        mActorAdapter.setOnItemClickListener(this);
+        notifyPropertyChanged(BR.actorAdapter);
+    }
+
+    @Override
+    public void onClick(Actor item) {
+        // todo later
     }
 }

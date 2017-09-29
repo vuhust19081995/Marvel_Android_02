@@ -20,4 +20,6 @@
     <dimen name="poster_image_width">130dp</dimen>
     <dimen name="text_overview_size">13sp</dimen>
     <dimen name="dp_3">3dp</dimen>
+    <dimen name="dp_100">100dp</dimen>
+    <dimen name="dp_70">70dp</dimen>
 </resources>
